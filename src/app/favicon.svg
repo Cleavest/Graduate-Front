@@ -1,0 +1,29 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Light gray background -->
+  <rect width="64" height="64" fill="#cccccc"/>
+  
+  <!-- Logo scaled to fill entire space -->
+  <g transform="translate(2, 2) scale(0.94)">
+    <!-- First vertical bar (left) -->
+     <rect x="0" y="0" width="12" height="50" rx="2" fill="#1d2636"/>
+    
+    <!-- Second vertical bar -->
+    <rect x="16" y="0" width="12" height="28" rx="2" fill="#1d2636"/>
+    
+    <!-- Top horizontal bar -->
+    <rect x="32" y="0" width="28" height="12" rx="2" fill="#1d2636"/>
+    
+    <!-- Middle blue horizontal bar -->
+    <rect x="32" y="16" width="28" height="12" rx="2" fill="#00b6e0"/>
+    
+    <!-- Lower L-shape -->
+    <path d="M0,46 L28,46 A2,2 0 0 1 30,48 L30,60 A2,2 0 0 1 28,62 L2,62 A2,2 0 0 1 0,60 L0,46 Z" fill="#1d2636"/>
+    
+    <!-- Small middle blue bar -->
+    <rect x="16" y="32" width="12" height="12" rx="2" fill="#00b6e0"/>
+    
+    <!-- Right vertical bars -->
+    <rect x="32" y="32" width="12" height="30" rx="2" fill="#1d2636"/>
+    <rect x="48" y="32" width="12" height="30" rx="2" fill="#1d2636"/>
+  </g>
+</svg>

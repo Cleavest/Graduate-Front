@@ -3,6 +3,9 @@
 import Link from 'next/link';
 import { useSession, signOut } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
+import logo from '@/app/favicon.svg';
+import Favicon from './favicon.svg';
+import Image from 'next/image';
 
 export default function Navigation() {
     const { data: session, status } = useSession();
@@ -19,6 +22,13 @@ export default function Navigation() {
                         >
                             BlockWise
                         </Link>
+
+                        {/* <Image
+                            src={logo}
+                            width={40}
+                            height={40}
+                            alt="BlockWise"
+                        /> */}
                     </div>
 
                     <div className="flex items-center space-x-4">
