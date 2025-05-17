@@ -74,7 +74,7 @@ export default function TaskPage() {
 
         try {
             const response = await axios.post(
-                `http://128.140.98.82:8084/compile/${language}`,
+                `${process.env.NEXT_PUBLIC_API_URL}/compile/${language}`,
                 {
                     id: taskId,
                     code: {
@@ -103,7 +103,7 @@ export default function TaskPage() {
         const fetchTask = async () => {
             try {
                 const response = await fetch(
-                    `http://128.140.98.82:8084/api/tasks/${taskId}`,
+                    `${process.env.NEXT_PUBLIC_API_URL}/api/tasks/${taskId}`,
                     {
                         headers: {
                             'Content-Type': 'application/json',

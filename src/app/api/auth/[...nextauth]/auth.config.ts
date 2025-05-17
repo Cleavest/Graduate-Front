@@ -12,7 +12,7 @@ export const authOptions: NextAuthOptions = {
             async authorize(credentials) {
                 try {
                     const res = await fetch(
-                        'http://128.140.98.82:8084/api/auth/signin',
+                        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/signin`,
                         {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
