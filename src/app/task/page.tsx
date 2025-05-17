@@ -29,7 +29,7 @@ export default function TasksPage() {
         const fetchTasks = async () => {
             try {
                 const response = await fetch(
-                    'http://128.140.98.82:8084/api/tasks',
+                    `${process.env.NEXT_PUBLIC_API_URL}/api/tasks`,
                     {
                         headers: {
                             'Content-Type': 'application/json',

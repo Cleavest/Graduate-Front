@@ -21,7 +21,7 @@ export default function ChaptersPage() {
         const fetchChapters = async () => {
             try {
                 const response = await axios.get(
-                    'http://128.140.98.82:8084/chapter/test',
+                    `${process.env.NEXT_PUBLIC_API_URL}/chapter/test`,
                     {
                         headers: {
                             Authorization: `Bearer ${session?.user?.accessToken}`,
