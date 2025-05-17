@@ -34,6 +34,15 @@ interface Task {
     sui: CodeSection;
 }
 
+interface CustomSession {
+    user?: {
+        id: string;
+        email?: string | null;
+        name?: string | null;
+        accessToken?: string;
+    };
+}
+
 interface ITab {
     tabContent: string;
     tabName: string;
