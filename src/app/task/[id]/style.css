@@ -1,0 +1,365 @@
+.task-container {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.split {
+    display: flex;
+    flex-direction: row;
+    height: calc(100vh - 64px) !important;
+    background-color: #1e1e1e;
+    overflow: hidden;
+}
+
+.split-vertical {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+.split > * {
+    height: 100%;
+}
+
+.split-vertical > * {
+    width: 100%;
+}
+
+.editor-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+.tabs {
+    display: flex;
+    background: #1e1e1e;
+    border-bottom: 1px solid #333;
+    flex-shrink: 0;
+}
+
+.tab {
+    padding: 8px 16px;
+    border: none;
+    background: none;
+    color: #888;
+    cursor: pointer;
+    font-size: 13px;
+    border-right: 1px solid #333;
+}
+
+.tab:hover {
+    background: #2d2d2d;
+}
+
+.tab.active {
+    color: #fff;
+    background: #2d2d2d;
+    border-bottom: 2px solid #007acc;
+}
+
+.editor-content {
+    flex: 1;
+    overflow: hidden;
+    background: #1e1e1e;
+}
+
+.editor-content .cm-editor {
+    height: 100%;
+}
+
+.split-panel {
+    height: 100%;
+    overflow: auto;
+}
+
+/* Ενημερωμένο styling για τα gutters */
+.gutter {
+    background-color: #333333;
+    transition: background-color 0.15s ease;
+}
+
+.gutter:hover {
+    background-color: #007acc;
+}
+
+.gutter.gutter-horizontal {
+    cursor: col-resize;
+    width: 8px;
+}
+
+.gutter.gutter-vertical {
+    cursor: row-resize;
+    height: 8px;
+}
+
+/* Διασφάλιση ότι τα splits έχουν σωστό μέγεθος */
+.split > div,
+.split-vertical > div {
+    height: 100%;
+    min-height: 0;
+    border: none !important;
+}
+
+/* Διόρθωση για τα margins */
+.editor-wrapper:first-child {
+    margin-bottom: 4px;
+}
+
+.editor-wrapper:last-child {
+    margin-top: 4px;
+}
+
+/* Markdown Styles */
+.prose {
+    color: #e2e8f0;
+    height: 100%;
+    overflow-y: auto;
+    padding-right: 16px;
+}
+
+.prose code {
+    background-color: #1e1e1e;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+.prose pre {
+    margin: 1em 0;
+    padding: 1em;
+    background-color: #1e1e1e;
+    border-radius: 6px;
+    overflow-x: auto;
+}
+
+.prose a {
+    color: #007acc;
+    text-decoration: none;
+}
+
+.prose a:hover {
+    text-decoration: underline;
+}
+
+.prose strong {
+    color: #fff;
+    font-weight: 600;
+}
+
+.prose em {
+    font-style: italic;
+}
+
+.prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+}
+
+.prose th,
+.prose td {
+    padding: 0.5em;
+    border: 1px solid #333;
+}
+
+.prose th {
+    background-color: #1e1e1e;
+    font-weight: 600;
+}
+
+.prose img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin: 1em 0;
+}
+
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1e1e1e;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #424242;
+    border-radius: 4px;
+    border: 2px solid #1e1e1e;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4f4f4f;
+}
+
+::-webkit-scrollbar-corner {
+    background: #1e1e1e;
+}
+
+/* Firefox Scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #424242 #1e1e1e;
+}
+
+/* Ensure smooth scrolling */
+.overflow-y-auto {
+    scroll-behavior: smooth;
+}
+
+/* Specific styling for the markdown content area */
+.prose {
+    overflow-y: auto;
+    padding-right: 8px; /* Αποτρέπει το scrollbar να καλύπτει το περιεχόμενο */
+}
+
+/* CodeMirror specific scrollbar styling */
+.cm-scroller::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.cm-scroller::-webkit-scrollbar-track {
+    background: #1e1e1e;
+}
+
+.cm-scroller::-webkit-scrollbar-thumb {
+    background: #424242;
+    border-radius: 4px;
+    border: 2px solid #1e1e1e;
+}
+
+.cm-scroller::-webkit-scrollbar-thumb:hover {
+    background: #4f4f4f;
+}
+
+/* CodeMirror specific styling */
+.cm-editor {
+    border: none !important;
+    background-color: #1e1e1e !important;
+    height: 100% !important;
+}
+
+.cm-editor .cm-gutters {
+    border-right: none !important;
+    background-color: #1e1e1e !important;
+}
+
+.cm-editor .cm-scroller {
+    padding-left: 4px !important;
+}
+
+/* Αφαίρεση οποιουδήποτε border από το container του CodeMirror */
+.editor-wrapper .cm-theme {
+    border: none !important;
+}
+
+/* Διόρθωση του scroll στο αριστερό panel */
+.split > div:first-child {
+    overflow-y: auto;
+    height: 100%;
+}
+
+/* Διόρθωση των editors */
+.split > div:last-child {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Tab Styles */
+.tabs-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: #1e1e1e;
+}
+
+.tab-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: #1e1e1e;
+    border-bottom: 1px solid #333;
+}
+
+.tab-list {
+    display: flex;
+    background: #252526;
+    border-bottom: 1px solid #333;
+}
+
+.tab {
+    padding: 0.5rem 1rem;
+    color: #888;
+    cursor: pointer;
+    font-size: 0.875rem;
+    border: none;
+    background: none;
+    border-right: 1px solid #333;
+}
+
+.tab[data-headlessui-state='selected'] {
+    color: #fff;
+    background: #1e1e1e;
+    border-top: 2px solid #007acc;
+}
+
+.tab:hover {
+    background: #2d2d2d;
+}
+
+.editor-content {
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Run Button Styles */
+.run-button {
+    background-color: #007acc;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.run-button:hover:not(:disabled) {
+    background-color: #0066aa;
+}
+
+.run-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    display: inline-flex;
+    align-items: center;
+}
+
+.loading-spinner svg {
+    margin-right: 0.5rem;
+}
+
+/* CodeMirror specific styles */
+.cm-editor {
+    height: 100% !important;
+}
+
+.cm-scroller {
+    padding: 0.5rem;
+}
