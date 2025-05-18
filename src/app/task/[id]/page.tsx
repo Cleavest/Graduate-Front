@@ -141,11 +141,11 @@ export default function TaskPage() {
     if (!task) return <div>Task not found</div>;
     if (textOnly) {
         return (
-            <div className="container mx-auto p-4 max-h-[calc(100vh-64px)] overflow-hidden">
-                <div className="bg-[#252526] p-8 text-gray-100 rounded-lg m-4 shadow-xl h-[calc(100vh-120px)] overflow-hidden">
+            <div className="container mx-auto p-4">
+                <div className="bg-[#252526] p-8 text-gray-100 rounded-lg m-4 shadow-xl">
                     <div
-                        className="prose prose-invert max-w-none h-full overflow-y-auto pr-4"
-                        style={{ maxHeight: 'calc(100vh - 170px)' }}
+                        className="prose prose-invert max-w-none h-full pr-4"
+                        // style={{ maxHeight: 'calc(100vh - 170px)' }}
                     >
                         <MarkdownRenderer content={task?.text || ''} />
                     </div>
@@ -155,7 +155,7 @@ export default function TaskPage() {
     }
 
     return (
-        <div className="h-[calc(100vh-64px)] overflow-hidden">
+        <div className="">
             <ToastContainer
                 position="top-right"
                 autoClose={3000}
@@ -169,7 +169,7 @@ export default function TaskPage() {
                 theme="dark"
             />
             <Split
-                sizes={[40, 60]}
+                sizes={[50, 50]}
                 minSize={300}
                 gutterSize={8}
                 className="split"

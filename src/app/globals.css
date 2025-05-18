@@ -41,12 +41,12 @@ body {
 body {
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Αποτρέπει το scrolling */
+    /* overflow: hidden; Αποτρέπει το scrolling */
     height: 100vh;
 }
 
 html {
-    overflow: hidden; /* Για επιπλέον ασφάλεια */
+    /* overflow: hidden; Για επιπλέον ασφάλεια */
 }
 
 .split-container {
