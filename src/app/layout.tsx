@@ -6,7 +6,7 @@ import type { Metadata } from 'next';
 
 const inter = Inter({ subsets: ['latin'] });
 
-import Favicon from './favicon.svg';
+import Favicon from './enhanced-logo.svg';
 
 export const metadata: Metadata = {
     title: 'BlockWise',
@@ -24,7 +24,7 @@ export default function RootLayout({
             <body className={inter.className}>
                 <AuthProvider>
                     <Navigation />
-                    <main className="min-h-screen">{children}</main>
+                    <main className="">{children}</main>
                 </AuthProvider>
             </body>
         </html>

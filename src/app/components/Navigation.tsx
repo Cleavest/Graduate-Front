@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useSession, signOut } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
-import logo from '@/app/favicon.svg';
+import logo from '@/app/enhanced-logo.svg';
 import Favicon from './favicon.svg';
 import Image from 'next/image';
 
@@ -16,19 +16,19 @@ export default function Navigation() {
             <div className="max-w-7xl mx-auto px-4">
                 <div className="flex justify-between h-16">
                     <div className="flex items-center">
+                        <Image
+                            src={logo}
+                            width={40}
+                            height={40}
+                            alt="BlockWise"
+                            className="mr-2"
+                        />
                         <Link
                             href="/"
                             className="text-xl font-bold text-nav-secondary"
                         >
                             BlockWise
                         </Link>
-
-                        {/* <Image
-                            src={logo}
-                            width={40}
-                            height={40}
-                            alt="BlockWise"
-                        /> */}
                     </div>
 
                     <div className="flex items-center space-x-4">

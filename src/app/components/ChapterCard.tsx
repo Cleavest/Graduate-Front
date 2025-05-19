@@ -18,7 +18,7 @@ export default function ChapterCard({
     return (
         <div className="bg-[#252526] p-6 rounded-lg shadow-2xl m-6 hover:bg-[#2d2d2d] transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-blue-500/20">
             <h2 className="text-xl font-semibold text-gray-100 mb-4 transition-colors duration-300">
-                {title}
+                {id} {title}
             </h2>
             <div className="mb-4">
                 <div className="text-right text-gray-400 mb-2">

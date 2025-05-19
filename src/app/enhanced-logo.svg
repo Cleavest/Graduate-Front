@@ -1,0 +1,61 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with gradient -->
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0f0f0" />
+      <stop offset="100%" stop-color="#e0e0e0" />
+    </linearGradient>
+    
+    <!-- Shadow filter -->
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0.5" dy="0.5" stdDeviation="0.7" flood-color="#00000033" />
+    </filter>
+    
+    <!-- Highlight gradient -->
+    <linearGradient id="highlight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff25" />
+      <stop offset="100%" stop-color="#ffffff00" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background rounded rectangle -->
+  <rect width="64" height="64" rx="6" fill="url(#bg-gradient)" />
+  
+  <!-- Logo centered and scaled -->
+  <g transform="translate(10, 8) scale(0.75)" filter="url(#shadow)">
+    <!-- First vertical bar (left) -->
+    <rect x="0" y="0" width="12" height="50" rx="2" fill="#1d2636" />
+    
+    <!-- Second vertical bar with gradient -->
+    <linearGradient id="bar-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1d2636" />
+      <stop offset="100%" stop-color="#2a3549" />
+    </linearGradient>
+    <rect x="16" y="0" width="12" height="28" rx="2" fill="url(#bar-gradient)" />
+    
+    <!-- Top horizontal bar -->
+    <rect x="32" y="0" width="28" height="12" rx="2" fill="#1d2636" />
+    
+    <!-- Middle blue horizontal bar with glow -->
+    <filter id="blue-glow">
+      <feGaussianBlur stdDeviation="0.5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <rect x="32" y="16" width="28" height="12" rx="2" fill="#00b6e0" filter="url(#blue-glow)" />
+    
+    <!-- Lower L-shape -->
+    <path d="M0,46 L28,46 A2,2 0 0 1 30,48 L30,60 A2,2 0 0 1 28,62 L2,62 A2,2 0 0 1 0,60 L0,46 Z" fill="#1d2636" />
+    
+    <!-- Small middle blue bar -->
+    <rect x="16" y="32" width="12" height="12" rx="2" fill="#00b6e0" filter="url(#blue-glow)" />
+    
+    <!-- Right vertical bars -->
+    <rect x="32" y="32" width="12" height="30" rx="2" fill="#1d2636" />
+    <rect x="48" y="32" width="12" height="30" rx="2" fill="#1d2636" />
+    
+    <!-- Subtle highlights on dark parts -->
+    <rect x="0" y="0" width="12" height="6" rx="2" fill="url(#highlight)" opacity="0.3" />
+    <rect x="16" y="0" width="12" height="6" rx="2" fill="url(#highlight)" opacity="0.3" />
+    <rect x="32" y="0" width="28" height="6" rx="2" fill="url(#highlight)" opacity="0.3" />
+  </g>
+</svg>

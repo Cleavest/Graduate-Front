@@ -64,17 +64,25 @@ export default function ChapterDetailsPage() {
     return (
         <div className="container mx-auto p-8 pr-40 pl-40">
             <div className="space-y-4">
-                <h2 className="text-2xl font-semibold text-gray-100 mb-4">
-                    Chapter {chapterId}
-                </h2>
-                {tasks.map((task) => (
+                <div className="flex justify-between">
+                    <h2 className="text-2xl font-semibold text-gray-100 mb-4 text-center">
+                        Chapter {chapterId}
+                    </h2>
+                    <button
+                        onClick={() => router.push(`/chapters`)}
+                        className="mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+                    >
+                        Back
+                    </button>
+                </div>
+                {tasks.map((task, index) => (
                     <div
                         key={task.id}
                         className="bg-[#252526] p-6 rounded-lg shadow-2xl cursor-pointer hover:bg-[#2d2d2d] transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-blue-500/20"
                         onClick={() => handleTaskClick(task.id)}
                     >
                         <h3 className="text-xl font-medium text-gray-100 mb-4 transition-colors duration-300">
-                            {task.title}
+                            {chapterId}.{index + 1} {task.title}
                         </h3>
                         <p className="text-gray-300 transition-colors duration-300">
                             {task.description}

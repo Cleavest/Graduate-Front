@@ -155,7 +155,7 @@ export default function TaskPage() {
     }
 
     return (
-        <div className="">
+        <div className="overflow-hidden">
             <ToastContainer
                 position="top-right"
                 autoClose={3000}

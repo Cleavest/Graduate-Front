@@ -9,7 +9,7 @@ module.exports = {
         extend: {
             colors: {
                 'nav-bg': '#26282B',
-                'nav-text': '#353941',
+                'nav-text': '#FFFFFF',
                 'nav-primary': '#5F85DB',
                 'nav-secondary': '#90B8F8',
             },
