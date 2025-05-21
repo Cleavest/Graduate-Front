@@ -55,7 +55,7 @@ export default function Navigation() {
                                 >
                                     Dashboard
                                 </Link>
-                                <Link
+                                {/* <Link
                                     href="/task"
                                     className={`px-3 py-2 rounded-md ${
                                         pathname === '/task'
@@ -64,7 +64,7 @@ export default function Navigation() {
                                     }`}
                                 >
                                     Tasks
-                                </Link>
+                                </Link> */}
                                 <Link
                                     href="/chapters"
                                     className={`px-3 py-2 rounded-md ${
