@@ -119,7 +119,8 @@ interface MarkdownRendererProps {
 
 const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) => {
     return (
-        <div className="prose prose-invert max-w-none">
+        //<div className="prose prose-invert max-w-none">
+        <div className="">
             <ReactMarkdown
                 components={MarkdownComponents}
                 remarkPlugins={[remarkGfm]}

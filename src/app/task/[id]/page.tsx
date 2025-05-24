@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import Split from 'react-split';
 import CodeEditor from '@/components/CodeEditor';
 import ReactMarkdown from 'react-markdown';
@@ -13,6 +13,7 @@ import { vscodeDark } from '@uiw/codemirror-theme-vscode';
 import { javascript } from '@codemirror/lang-javascript';
 import './style.css';
 import MarkdownRenderer from '@/components/MarkdownRenderer';
+import Link from 'next/link';
 
 interface TabData {
     tabName: string;
@@ -51,6 +52,7 @@ interface ITab {
 type CompilerType = 'solidity' | 'sui';
 
 export default function TaskPage() {
+    const router = useRouter();
     const params = useParams();
     const taskId = Array.isArray(params.id) ? params.id[0] : params.id;
     const { data: session } = useSession() as { data: CustomSession };
@@ -64,6 +66,13 @@ export default function TaskPage() {
         solidity: false,
         sui: false,
     });
+
+    const handleNavigation = (direction: 'prev' | 'next') => {
+        const newTaskId =
+            direction === 'prev' ? Number(taskId) - 1 : Number(taskId) + 1;
+        if (direction === 'prev' && Number(taskId) <= 1) return;
+        router.push(`/task/${newTaskId}`);
+    };
 
     const handleRun = async (
         editorContent: string,
@@ -143,11 +152,27 @@ export default function TaskPage() {
         return (
             <div className="container mx-auto p-4">
                 <div className="bg-[#252526] p-8 text-gray-100 rounded-lg m-4 shadow-xl">
-                    <div
-                        className="prose prose-invert max-w-none h-full pr-4"
-                        // style={{ maxHeight: 'calc(100vh - 170px)' }}
-                    >
+                    <div className="prose prose-invert max-w-none h-full pr-4">
                         <MarkdownRenderer content={task?.text || ''} />
+                    </div>
+                    <div className="flex justify-between mt-6">
+                        <button
+                            onClick={() => handleNavigation('prev')}
+                            className={`px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors ${
+                                Number(taskId) <= 1
+                                    ? 'opacity-50 cursor-not-allowed'
+                                    : ''
+                            }`}
+                            disabled={Number(taskId) <= 1}
+                        >
+                            ← Προηγούμενο Task
+                        </button>
+                        <button
+                            onClick={() => handleNavigation('next')}
+                            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+                        >
+                            Επόμενο Task →
+                        </button>
                     </div>
                 </div>
             </div>
@@ -177,6 +202,25 @@ export default function TaskPage() {
                 <div className="bg-[#252526] p-8 text-gray-100 rounded-lg m-4 shadow-xl">
                     <div className="prose prose-invert max-w-none">
                         <MarkdownRenderer content={task?.text || ''} />
+                        <div className="flex justify-between mt-6">
+                            <button
+                                onClick={() => handleNavigation('prev')}
+                                className={`px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors ${
+                                    Number(taskId) <= 1
+                                        ? 'opacity-50 cursor-not-allowed'
+                                        : ''
+                                }`}
+                                disabled={Number(taskId) <= 1}
+                            >
+                                ← Προηγούμενο Task
+                            </button>
+                            <button
+                                onClick={() => handleNavigation('next')}
+                                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+                            >
+                                Επόμενο Task →
+                            </button>
+                        </div>
                     </div>
                 </div>
 
