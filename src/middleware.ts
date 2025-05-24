@@ -11,6 +11,7 @@ export const config = {
         '/dashboard/:path*',
         '/profile/:path*',
         '/task/:path*',
+        '/chapters/:path*',
         // Προσθέστε εδώ όποια άλλα protected routes θέλετε
     ],
 };
