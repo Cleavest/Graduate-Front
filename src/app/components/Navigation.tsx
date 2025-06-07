@@ -55,6 +55,17 @@ export default function Navigation() {
                                 >
                                     Dashboard
                                 </Link>
+
+                                <Link
+                                    href="/aminpanel"
+                                    className={`px-3 py-2 rounded-md ${
+                                        pathname === '/aminpanel'
+                                            ? 'text-nav-secondary'
+                                            : 'text-nav-text hover:text-nav-primary'
+                                    }`}
+                                >
+                                    aminpanel
+                                </Link>
                                 {/* <Link
                                     href="/task"
                                     className={`px-3 py-2 rounded-md ${

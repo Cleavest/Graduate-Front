@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
 
@@ -106,7 +106,31 @@ const AdminPage = () => {
         }
     };
 
+    useEffect(() => {
+        const fetchChapters = async () => {
+            console.log('sd');
+            try {
+                const response = await axios.get(
+                    `${process.env.NEXT_PUBLIC_API_URL}/chapter/test`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${session?.user?.accessToken}`,
+                        },
+                    }
+                );
+                console.log(response.data);
+            } catch (err) {
+                console.error('Error fetching chapters:', err);
+            }
+        };
+
+        if (session) {
+            fetchChapters();
+        }
+    });
+
     const handleCreateChapter = async () => {
+        console.log(session);
         try {
             console.log();
             const response = await axios.post(
@@ -117,6 +141,7 @@ const AdminPage = () => {
                     },
                 }
             );
+
             alert('Το task δημιουργήθηκε!');
 
             console.log(response.data);
