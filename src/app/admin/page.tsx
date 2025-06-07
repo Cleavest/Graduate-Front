@@ -86,6 +86,7 @@ const AdminPage = () => {
             solidity,
         };
         try {
+            console.log();
             const response = await axios.post(
                 `${process.env.NEXT_PUBLIC_API_URL}/api/create`,
                 {
@@ -101,6 +102,25 @@ const AdminPage = () => {
             form.reset();
         } catch (err) {
             alert('Σφάλμα κατά τη δημιουργία task');
+            console.log(err);
+        }
+    };
+
+    const handleCreateChapter = async () => {
+        try {
+            console.log();
+            const response = await axios.post(
+                `${process.env.NEXT_PUBLIC_API_URL}/api/testik`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${session?.user?.accessToken}`,
+                    },
+                }
+            );
+            alert('Το task δημιουργήθηκε!');
+
+            console.log(response.data);
+        } catch (err) {
             console.log(err);
         }
     };
@@ -149,10 +169,7 @@ const AdminPage = () => {
                             <h2 className="text-xl font-semibold mb-4 text-blue-600">
                                 Δημιουργία Task
                             </h2>
-                            <form
-                                className="space-y-4 divide-y divide-zinc-600"
-                                onSubmit={handleSubmit}
-                            >
+                            <form className="space-y-4 divide-y divide-zinc-600">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pb-3">
                                     <div>
                                         <label className="block mb-0.5 font-semibold text-gray-200 text-sm">
@@ -431,7 +448,8 @@ const AdminPage = () => {
                                 </div>
                                 <div className="pt-3 flex justify-end">
                                     <button
-                                        type="submit"
+                                        type="button"
+                                        onClick={() => handleCreateChapter()}
                                         className="bg-blue-600 text-white px-6 py-1.5 rounded-md font-bold hover:bg-blue-700 transition shadow text-sm"
                                     >
                                         Δημιουργία
@@ -472,16 +490,10 @@ const AdminPage = () => {
                                     </select>
                                 </div>
                                 <div className="flex gap-2">
-                                    <button
-                                        type="submit"
-                                        className="bg-blue-600 text-white px-6 py-2 rounded-md font-bold hover:bg-blue-700 transition"
-                                    >
+                                    <button className="bg-blue-600 text-white px-6 py-2 rounded-md font-bold hover:bg-blue-700 transition">
                                         Προσθήκη
                                     </button>
-                                    <button
-                                        type="submit"
-                                        className="bg-blue-600 text-white px-6 py-2 rounded-md font-bold hover:bg-blue-700 transition"
-                                    >
+                                    <button className="bg-blue-600 text-white px-6 py-2 rounded-md font-bold hover:bg-blue-700 transition">
                                         remove
                                     </button>
                                 </div>
@@ -526,8 +538,8 @@ const AdminPage = () => {
                                 </div>
                                 <div className="pt-3 flex justify-end">
                                     <button
-                                        type="submit"
                                         className="bg-blue-600 text-white px-6 py-1.5 rounded-md font-bold hover:bg-blue-700 transition shadow text-sm"
+                                        onClick={() => handleCreateChapter()}
                                     >
                                         Δημιουργία
                                     </button>
