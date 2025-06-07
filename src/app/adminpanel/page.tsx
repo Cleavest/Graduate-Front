@@ -18,7 +18,6 @@ const AdminPage = () => {
     const [title, setTitle] = useState<String>();
     const [desc, setDesc] = useState<String>();
 
-
     const handleSuiTabChange = (
         idx: number,
         field: 'tabName' | 'tabContent',
@@ -117,11 +116,11 @@ const AdminPage = () => {
             const payload = {
                 id: chapterId,
                 title: title,
-                description: desc
+                description: desc,
             };
             const response = await axios.post(
                 `${process.env.NEXT_PUBLIC_API_URL}/chapter/create`,
-                payload
+                payload,
                 {
                     headers: {
                         Authorization: `Bearer ${session?.user?.accessToken}`,
@@ -526,9 +525,10 @@ const AdminPage = () => {
                                     </label>
                                     <input
                                         type="number"
-                                    
                                         name="id"
-                                        onChange={e => setChapterId(e.target.value)}
+                                        onChange={(e) =>
+                                            setChapterId(e.target.value)
+                                        }
                                         className="w-full pl-2 pr-2 py-1.5 bg-zinc-700 border border-zinc-600 text-gray-100 placeholder-gray-400 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:border-transparent transition-all duration-200"
                                     />
                                 </div>
@@ -539,7 +539,9 @@ const AdminPage = () => {
                                     <input
                                         type="text"
                                         name="title"
-                                        onChange={e => setTitle(e.target.value)}
+                                        onChange={(e) =>
+                                            setTitle(e.target.value)
+                                        }
                                         className="w-full pl-2 pr-2 py-1.5 bg-zinc-700 border border-zinc-600 text-gray-100 placeholder-gray-400 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:border-transparent transition-all duration-200"
                                     />
                                 </div>
@@ -550,7 +552,9 @@ const AdminPage = () => {
                                     <textarea
                                         name="description"
                                         rows={2}
-                                        onChange={e => setDesc(e.target.value)}
+                                        onChange={(e) =>
+                                            setDesc(e.target.value)
+                                        }
                                         className="w-full pl-2 pr-2 py-1.5 bg-zinc-700 border border-zinc-600 text-gray-100 placeholder-gray-400 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:border-transparent transition-all duration-200"
                                     />
                                 </div>
