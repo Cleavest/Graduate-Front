@@ -650,13 +650,13 @@ const AdminPage = () => {
                                 <div className="flex gap-2">
                                     <button
                                         className="bg-blue-600 text-white px-6 py-2 rounded-md font-bold hover:bg-blue-700 transition"
-                                        onChange={() => handleTaskAndChapter(0)}
+                                        onClick={() => handleTaskAndChapter(0)}
                                     >
                                         Προσθήκη
                                     </button>
                                     <button
                                         className="bg-blue-600 text-white px-6 py-2 rounded-md font-bold hover:bg-blue-700 transition"
-                                        onChange={() => handleTaskAndChapter(1)}
+                                        onClick={() => handleTaskAndChapter(1)}
                                     >
                                         Αφαιρέσει
                                     </button>
