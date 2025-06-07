@@ -57,14 +57,14 @@ export default function Navigation() {
                                 </Link>
 
                                 <Link
-                                    href="/aminpanel"
+                                    href="/adminpanel"
                                     className={`px-3 py-2 rounded-md ${
-                                        pathname === '/aminpanel'
+                                        pathname === '/adminpanel'
                                             ? 'text-nav-secondary'
                                             : 'text-nav-text hover:text-nav-primary'
                                     }`}
                                 >
-                                    aminpanel
+                                    adminpanel
                                 </Link>
                                 {/* <Link
                                     href="/task"

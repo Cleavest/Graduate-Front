@@ -111,7 +111,7 @@ const AdminPage = () => {
             console.log('sd');
             try {
                 const response = await axios.get(
-                    `${process.env.NEXT_PUBLIC_API_URL}/chapter/test`,
+                    `${process.env.NEXT_PUBLIC_API_URL}/api/testik`,
                     {
                         headers: {
                             Authorization: `Bearer ${session?.user?.accessToken}`,
