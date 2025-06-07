@@ -111,9 +111,9 @@ const AdminPage = () => {
     const removeSolidityTab = (idx: number) =>
         setSolidityTabs((tabs) => tabs.filter((_, i) => i !== idx));
 
-    const test = async (e: React.FormEvent<HTMLFormElement>) => {{
+    const test = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-    }
+    };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -589,7 +589,7 @@ const AdminPage = () => {
                             <h2 className="text-xl font-semibold mb-4 text-blue-600">
                                 Προσθήκη Task σε Chapters
                             </h2>
-                            <form className="space-y-4"  onSubmit={test}>
+                            <form className="space-y-4" onSubmit={test}>
                                 <div>
                                     <label className="block mb-2 font-medium text-gray-900 dark:text-white">
                                         Επιλογή Task:
@@ -669,7 +669,7 @@ const AdminPage = () => {
                             <h2 className="text-xl font-semibold mb-4 text-blue-600">
                                 Δημιουργία Chapters
                             </h2>
-                            <form className="space-y-4"  onSubmit={test}>
+                            <form className="space-y-4" onSubmit={test}>
                                 <div>
                                     <label className="block mb-0.5 font-semibold text-gray-200 text-sm">
                                         ID:
