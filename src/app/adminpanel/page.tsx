@@ -3,6 +3,12 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
 
+interface Task {
+    id: number;
+    title: string;
+    description: string;
+}
+
 const AdminPage = () => {
     const { data: session } = useSession();
     const [activeTab, setActiveTab] = useState<'create' | 'assign' | 'create2'>(
@@ -17,6 +23,66 @@ const AdminPage = () => {
     const [chapterId, setChapterId] = useState<String>();
     const [title, setTitle] = useState<String>();
     const [desc, setDesc] = useState<String>();
+
+    const [chapters, setChapters] = useState<Chapter[]>([
+        { id: 23, title: '213', description: '123123' },
+    ]);
+    const [tasks, setTasks] = useState<Task[]>([
+        { id: 2, title: '23', description: '23' },
+    ]);
+    const [selectedTask, setSelectedTask] = useState(tasks[0]);
+    const [selectedChapter, setSelectedChapter] = useState(chapters[0]);
+
+    useEffect(() => {
+        const fetchChapters = async () => {
+            try {
+                const response = await axios.get(
+                    `${process.env.NEXT_PUBLIC_API_URL}/chapter/test`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${session?.user?.accessToken}`,
+                        },
+                    }
+                );
+                console.log(response.data);
+                setChapters(response.data);
+            } catch (err) {
+                console.log('Σφάλμα κατά τη φόρτωση των κεφαλαίων');
+                console.error('Error fetching chapters:', err);
+            }
+        };
+
+        const fetchTasks = async () => {
+            try {
+                const response = await fetch(
+                    `${process.env.NEXT_PUBLIC_API_URL}/api/tasks`,
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${session?.user?.accessToken}`,
+                        },
+                    }
+                );
+
+                if (!response.ok) {
+                    console.log(response);
+                    throw new Error('Failed to fetch tasks');
+                }
+
+                const data = await response.json();
+                setTasks(data);
+            } catch (err) {
+                console.log(
+                    err instanceof Error ? err.message : 'An error occurred'
+                );
+            }
+        };
+
+        if (session) {
+            fetchChapters();
+            fetchTasks();
+        }
+    }, [session]);
 
     const handleSuiTabChange = (
         idx: number,
@@ -109,9 +175,17 @@ const AdminPage = () => {
             console.log(err);
         }
     };
+    const handleChangeTask = (option: Task) => {
+        setSelectedTask(option);
+    };
 
     const handleCreateChapter = async () => {
-        console.log(session);
+        if (!session?.user?.accessToken) {
+            alert(
+                'Πρέπει να είστε συνδεδεμένοι για να δημιουργήσετε ένα κεφάλαιο'
+            );
+            return;
+        }
         try {
             const payload = {
                 id: chapterId,
@@ -483,10 +557,26 @@ const AdminPage = () => {
                                     </label>
                                     <select
                                         id="task"
+                                        value={selectedTask.id}
+                                        onChange={(e) =>
+                                            handleChangeTask(
+                                                tasks.find(
+                                                    (task) =>
+                                                        task.id ===
+                                                        Number(e.target.value)
+                                                )!
+                                            )
+                                        }
                                         className="w-full pl-10 pr-3 py-2 bg-zinc-700 border border-zinc-600 text-gray-100 placeholder-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:border-transparent transition-all duration-200"
                                     >
-                                        <option>Task 1</option>
-                                        <option>Task 2</option>
+                                        {tasks.map((task) => (
+                                            <option
+                                                key={task.id}
+                                                value={task.id}
+                                            >
+                                                {task.title}
+                                            </option>
+                                        ))}
                                     </select>
                                 </div>
                                 <div>
