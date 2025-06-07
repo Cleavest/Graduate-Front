@@ -14,6 +14,11 @@ const AdminPage = () => {
         { tabName: '', tabContent: '' },
     ]);
 
+    const [chapterId, setChapterId] = useState<String>();
+    const [title, setTitle] = useState<String>();
+    const [desc, setDesc] = useState<String>();
+
+
     const handleSuiTabChange = (
         idx: number,
         field: 'tabName' | 'tabContent',
@@ -106,37 +111,17 @@ const AdminPage = () => {
         }
     };
 
-    // useEffect(() => {
-    //     const fetchChapters = async () => {
-    //         console.log('sd');
-    //         try {
-    //             const response = await axios.post(
-    //                 `${process.env.NEXT_PUBLIC_API_URL}/api/testik`,
-
-    //                 {
-    //                     headers: {
-    //                         Authorization: `Bearer ${session?.user?.accessToken}`,
-    //                     },
-    //                 }
-    //             );
-    //             console.log(response.data);
-    //         } catch (err) {
-    //             console.error('Error fetching chapters:', err);
-    //         }
-    //     };
-
-    //     if (session) {
-    //         fetchChapters();
-    //     }
-    // });
-
     const handleCreateChapter = async () => {
         console.log(session);
         try {
-            console.log();
+            const payload = {
+                id: chapterId,
+                title: title,
+                description: desc
+            };
             const response = await axios.post(
-                `${process.env.NEXT_PUBLIC_API_URL}/api/testik`,
-
+                `${process.env.NEXT_PUBLIC_API_URL}/chapter/create`,
+                payload
                 {
                     headers: {
                         Authorization: `Bearer ${session?.user?.accessToken}`,
@@ -541,7 +526,9 @@ const AdminPage = () => {
                                     </label>
                                     <input
                                         type="number"
+                                    
                                         name="id"
+                                        onChange={e => setChapterId(e.target.value)}
                                         className="w-full pl-2 pr-2 py-1.5 bg-zinc-700 border border-zinc-600 text-gray-100 placeholder-gray-400 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:border-transparent transition-all duration-200"
                                     />
                                 </div>
@@ -552,6 +539,7 @@ const AdminPage = () => {
                                     <input
                                         type="text"
                                         name="title"
+                                        onChange={e => setTitle(e.target.value)}
                                         className="w-full pl-2 pr-2 py-1.5 bg-zinc-700 border border-zinc-600 text-gray-100 placeholder-gray-400 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:border-transparent transition-all duration-200"
                                     />
                                 </div>
@@ -562,6 +550,7 @@ const AdminPage = () => {
                                     <textarea
                                         name="description"
                                         rows={2}
+                                        onChange={e => setDesc(e.target.value)}
                                         className="w-full pl-2 pr-2 py-1.5 bg-zinc-700 border border-zinc-600 text-gray-100 placeholder-gray-400 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:border-transparent transition-all duration-200"
                                     />
                                 </div>
