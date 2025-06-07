@@ -183,6 +183,37 @@ const AdminPage = () => {
         setSelectedChapter(option);
     };
 
+    const handleTaskAndChapter = async (typeCh: number) => {
+        if (!session?.user?.accessToken) {
+            alert(
+                'Πρέπει να είστε συνδεδεμένοι για να δημιουργήσετε ένα κεφάλαιο'
+            );
+            return;
+        }
+        try {
+            const payload = {
+                chapterId: selectedChapter.id,
+                taskId: selectedTask.id,
+                type: typeCh,
+            };
+            const response = await axios.post(
+                `${process.env.NEXT_PUBLIC_API_URL}/chapter/change`,
+                payload,
+                {
+                    headers: {
+                        Authorization: `Bearer ${session?.user?.accessToken}`,
+                    },
+                }
+            );
+
+            alert('Το task δημιουργήθηκε!');
+
+            console.log(response.data);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     const handleCreateChapter = async () => {
         if (!session?.user?.accessToken) {
             alert(
@@ -613,11 +644,17 @@ const AdminPage = () => {
                                     </select>
                                 </div>
                                 <div className="flex gap-2">
-                                    <button className="bg-blue-600 text-white px-6 py-2 rounded-md font-bold hover:bg-blue-700 transition">
+                                    <button
+                                        className="bg-blue-600 text-white px-6 py-2 rounded-md font-bold hover:bg-blue-700 transition"
+                                        onChange={() => handleTaskAndChapter(0)}
+                                    >
                                         Προσθήκη
                                     </button>
-                                    <button className="bg-blue-600 text-white px-6 py-2 rounded-md font-bold hover:bg-blue-700 transition">
-                                        remove
+                                    <button
+                                        className="bg-blue-600 text-white px-6 py-2 rounded-md font-bold hover:bg-blue-700 transition"
+                                        onChange={() => handleTaskAndChapter(1)}
+                                    >
+                                        Αφαιρέσει
                                     </button>
                                 </div>
                             </form>
