@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
+import { ToastContainer, toast } from 'react-toastify';
 
 interface Task {
     id: number;
@@ -44,7 +45,7 @@ const AdminPage = () => {
                         },
                     }
                 );
-                console.log(response.data);
+
                 setChapters(response.data);
             } catch (err) {
                 console.log('Σφάλμα κατά τη φόρτωση των κεφαλαίων');
@@ -170,12 +171,11 @@ const AdminPage = () => {
                     },
                 }
             );
-            alert('Το task δημιουργήθηκε!');
+            toast.success('Το task δημιουργήθηκε!');
 
-            console.log(response.data);
             form.reset();
         } catch (err) {
-            alert('Σφάλμα κατά τη δημιουργία task');
+            toast.error('Σφάλμα κατά τη δημιουργία task');
             console.log(err);
         }
     };
@@ -189,9 +189,7 @@ const AdminPage = () => {
 
     const handleTaskAndChapter = async (typeCh: number) => {
         if (!session?.user?.accessToken) {
-            alert(
-                'Πρέπει να είστε συνδεδεμένοι για να δημιουργήσετε ένα κεφάλαιο'
-            );
+            toast.error('Πρέπει να είστε συνδεδεμένοι');
             return;
         }
         try {
@@ -210,8 +208,11 @@ const AdminPage = () => {
                 }
             );
 
-            alert('Το task δημιουργήθηκε!');
-
+            toast.success(
+                typeCh === 0
+                    ? 'Το task προστέθηκε στο κεφάλαιο!'
+                    : 'Το task αφαιρέθηκε από το κεφάλαιο!'
+            );
             console.log(response.data);
         } catch (err) {
             console.log(err);
@@ -220,9 +221,7 @@ const AdminPage = () => {
 
     const handleCreateChapter = async () => {
         if (!session?.user?.accessToken) {
-            alert(
-                'Πρέπει να είστε συνδεδεμένοι για να δημιουργήσετε ένα κεφάλαιο'
-            );
+            toast.error('Πρέπει να είστε συνδεδεμένοι');
             return;
         }
         try {
@@ -241,7 +240,7 @@ const AdminPage = () => {
                 }
             );
 
-            alert('Το task δημιουργήθηκε!');
+            toast.success('Το chapter δημιουργήθηκε!');
 
             console.log(response.data);
         } catch (err) {
