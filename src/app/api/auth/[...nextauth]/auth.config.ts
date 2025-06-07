@@ -32,6 +32,7 @@ export const authOptions: NextAuthOptions = {
                             accessToken: data.token,
                             expiresAt: data.expires_at,
                             issuedAt: data.issued_at,
+                            role: data.role, // Ενημερωμένο
                         };
                     }
                     return null;
@@ -45,12 +46,14 @@ export const authOptions: NextAuthOptions = {
         async jwt({ token, user }) {
             if (user) {
                 token.accessToken = user.accessToken;
+                token.role = user.role; // Ενημερωμένο
             }
             return token;
         },
         async session({ session, token }) {
             if (session.user) {
-                session.user.accessToken = token.accessToken as string;
+                session.user.accessToken = token.accessToken;
+                session.user.role = token.role; // Ενημερωμένο
             }
             return session;
         },
