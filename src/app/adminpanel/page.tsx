@@ -179,6 +179,10 @@ const AdminPage = () => {
         setSelectedTask(option);
     };
 
+    const handleChangeChapter = (option: Chapter) => {
+        setSelectedChapter(option);
+    };
+
     const handleCreateChapter = async () => {
         if (!session?.user?.accessToken) {
             alert(
@@ -586,10 +590,26 @@ const AdminPage = () => {
 
                                     <select
                                         id="chapter"
+                                        value={selectedChapter.id}
+                                        onChange={(e) =>
+                                            handleChangeChapter(
+                                                chapters.find(
+                                                    (chapter) =>
+                                                        chapter.id ===
+                                                        Number(e.target.value)
+                                                )!
+                                            )
+                                        }
                                         className="w-full pl-10 pr-3 py-2 bg-zinc-700 border border-zinc-600 text-gray-100 placeholder-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:border-transparent transition-all duration-200"
                                     >
-                                        <option>Chapter 1</option>
-                                        <option>Chapter 2</option>
+                                        {chapters.map((chapter) => (
+                                            <option
+                                                key={chapter.id}
+                                                value={chapter.id}
+                                            >
+                                                {chapter.title}
+                                            </option>
+                                        ))}
                                     </select>
                                 </div>
                                 <div className="flex gap-2">
