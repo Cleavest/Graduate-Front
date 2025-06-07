@@ -89,11 +89,11 @@ const AdminPage = () => {
             console.log();
             const response = await axios.post(
                 `${process.env.NEXT_PUBLIC_API_URL}/api/create`,
+                payload,
                 {
                     headers: {
                         Authorization: `Bearer ${session?.user?.accessToken}`,
                     },
-                    payload,
                 }
             );
             alert('Το task δημιουργήθηκε!');
@@ -106,28 +106,29 @@ const AdminPage = () => {
         }
     };
 
-    useEffect(() => {
-        const fetchChapters = async () => {
-            console.log('sd');
-            try {
-                const response = await axios.get(
-                    `${process.env.NEXT_PUBLIC_API_URL}/api/testik`,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${session?.user?.accessToken}`,
-                        },
-                    }
-                );
-                console.log(response.data);
-            } catch (err) {
-                console.error('Error fetching chapters:', err);
-            }
-        };
+    // useEffect(() => {
+    //     const fetchChapters = async () => {
+    //         console.log('sd');
+    //         try {
+    //             const response = await axios.post(
+    //                 `${process.env.NEXT_PUBLIC_API_URL}/api/testik`,
 
-        if (session) {
-            fetchChapters();
-        }
-    });
+    //                 {
+    //                     headers: {
+    //                         Authorization: `Bearer ${session?.user?.accessToken}`,
+    //                     },
+    //                 }
+    //             );
+    //             console.log(response.data);
+    //         } catch (err) {
+    //             console.error('Error fetching chapters:', err);
+    //         }
+    //     };
+
+    //     if (session) {
+    //         fetchChapters();
+    //     }
+    // });
 
     const handleCreateChapter = async () => {
         console.log(session);
@@ -135,6 +136,7 @@ const AdminPage = () => {
             console.log();
             const response = await axios.post(
                 `${process.env.NEXT_PUBLIC_API_URL}/api/testik`,
+
                 {
                     headers: {
                         Authorization: `Bearer ${session?.user?.accessToken}`,
@@ -194,7 +196,10 @@ const AdminPage = () => {
                             <h2 className="text-xl font-semibold mb-4 text-blue-600">
                                 Δημιουργία Task
                             </h2>
-                            <form className="space-y-4 divide-y divide-zinc-600">
+                            <form
+                                className="space-y-4 divide-y divide-zinc-600"
+                                onSubmit={handleSubmit}
+                            >
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pb-3">
                                     <div>
                                         <label className="block mb-0.5 font-semibold text-gray-200 text-sm">
@@ -473,8 +478,7 @@ const AdminPage = () => {
                                 </div>
                                 <div className="pt-3 flex justify-end">
                                     <button
-                                        type="button"
-                                        onClick={() => handleCreateChapter()}
+                                        type="submit"
                                         className="bg-blue-600 text-white px-6 py-1.5 rounded-md font-bold hover:bg-blue-700 transition shadow text-sm"
                                     >
                                         Δημιουργία
