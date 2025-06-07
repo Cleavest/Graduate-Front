@@ -55,17 +55,18 @@ export default function Navigation() {
                                 >
                                     Dashboard
                                 </Link>
-
-                                <Link
-                                    href="/adminpanel"
-                                    className={`px-3 py-2 rounded-md ${
-                                        pathname === '/adminpanel'
-                                            ? 'text-nav-secondary'
-                                            : 'text-nav-text hover:text-nav-primary'
-                                    }`}
-                                >
-                                    adminpanel
-                                </Link>
+                                {session?.user?.role === 'ADMIN' ? (
+                                    <Link
+                                        href="/adminpanel"
+                                        className={`px-3 py-2 rounded-md ${
+                                            pathname === '/adminpanel'
+                                                ? 'text-nav-secondary'
+                                                : 'text-nav-text hover:text-nav-primary'
+                                        }`}
+                                    >
+                                        admin
+                                    </Link>
+                                ) : null}
                                 {/* <Link
                                     href="/task"
                                     className={`px-3 py-2 rounded-md ${

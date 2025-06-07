@@ -250,6 +250,10 @@ const AdminPage = () => {
 
     console.log(session?.user?.role);
 
+    if (session?.user?.role === 'USER') {
+        return <p>Welcome, User!</p>;
+      }
+
     return (
         <div className="container mx-auto p-8 pr-40 pl-40">
             <div className=" mx-auto mt-10 bg-zinc-800 rounded-xl shadow-md p-8">
